@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>My Todo</h1>
+        <form action="/task" method="post">
+            <div>
+                <label for="taskName"> Task name:</label>
+                <input type="text" name ="taskName" id="taskName" />
+                <input hidden type="text" name ="content" th:value="${contents}" />
+                <button>Add Task</button>
+                <button formaction="/task/save">save</button>
+
+            </div>
+            <h2 th:text="${contents ==''}? |You seems to be quite free| : |Your to do list|">list</h2>
+            <ol>
+                <li th:each="task:${tasks}" th:text="${task}"></li>
+            </ol>
+        </form>
+    </div>
+</body>
+</html>
